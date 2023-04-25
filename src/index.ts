@@ -1,47 +1,69 @@
-import { WhereFilter } from 'weaviate-ts-client'
+import { Property, WhereFilter } from 'weaviate-ts-client'
 import { ClassObj } from './interfaces/classObj'
-import * as queries from './queries/data'
+import * as queriesData from './queries/data'
+import * as queriesSchema from './queries/schema'
 
-const express = require('express')
-const app = express()
-
-const { port } = process.env
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
-})
-
-const where_filter: WhereFilter = {
-  path: ['entity'],
-  operator: 'Equal',
-  valueText: ''
-}
-
-async function execute() {
+export async function createClass(classObj: ClassObj) {
   try {
-    // await queries.deleteClass('')
-    // await queries.createClass(classObj)
-    // console.log((await queries.getSchema()).classes[0])
-    // await queries.importData(
-    //   '',
-    //   ''
-    // )
-    // console.log(await queries.getData())
-    // console.log(
-    //   await queries.textSearch(
-    //     '',
-    //     ['4'],
-    //     [],
-    //     { filters: [where_filter], limit: 3 }
-    //   )
-    // )
+    return await queriesSchema.createClass(classObj)
   } catch (err) {
     return
   }
 }
 
-execute()
+export async function getSchema() {
+  try {
+    return await queriesSchema.get()
+  } catch (err) {
+    return
+  }
+}
+
+export async function updateClass(className: string, property: Property) {
+  try {
+    return await queriesSchema.updateClass(className, property)
+  } catch (err) {
+    return
+  }
+}
+
+export async function deleteClass(className: string) {
+  try {
+    return await queriesSchema.deleteClass(className)
+  } catch (err) {
+    return
+  }
+}
+
+export async function importUrl(
+  className: string,
+  url: string,
+  additionalOptions?: any[]
+) {
+  try {
+    return await queriesData.importUrl(className, url, additionalOptions)
+  } catch (err) {
+    return
+  }
+}
+
+export async function textSearch(args: {
+  className: string
+  concepts: string[]
+  fields: string[]
+  filters?: WhereFilter[]
+  limit?: number
+  additionalFields?: string[]
+}) {
+  try {
+    const { className, concepts, fields, filters, limit, additionalFields } =
+      args
+    return await queriesData.textSearch(className, concepts, fields, {
+      filters,
+      limit,
+      additionalFields
+    })
+  } catch (err) {
+    return
+  }
+}
