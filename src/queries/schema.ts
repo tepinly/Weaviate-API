@@ -2,43 +2,44 @@ import { client } from './client'
 import { ClassObj } from '../interfaces/classObj'
 import { Property } from 'weaviate-ts-client'
 
-async function crud(
-  req: string,
-  args?: { classObj?: ClassObj; className?: string; property?: Property } | any
-): Promise<any> {
+export async function create(classObj: ClassObj) {
   try {
-    const schema = client.schema
-
-    const res = await (req === 'create'
-      ? schema.classCreator().withClass(args.classObj)
-      : req === 'delete'
-      ? schema.classDeleter().withClassName(args.className)
-      : req === 'update'
-      ? schema
-          .propertyCreator()
-          .withClassName(args.className)
-          .withProperty(args.property)
-      : schema.getter()
-    ).do()
-    return res
+    return await client.schema.classCreator().withClass(classObj).do()
   } catch (err) {
     console.log(err.message)
     throw err
   }
 }
 
-export async function createClass(classObj: ClassObj) {
-  return await crud('create', { classObj })
+export async function getProperties(className: string) {
+  try {
+    return (await client.schema.getter().do()).classes.find(
+      (classObj) => classObj.class === className
+    ).properties
+  } catch (err) {
+    console.log(err.message)
+    throw err
+  }
 }
 
-export async function get() {
-  return await crud('read')
+export async function update(className: string, property: Property) {
+  try {
+    return await client.schema
+      .propertyCreator()
+      .withClassName(className)
+      .withProperty(property)
+      .do()
+  } catch (err) {
+    console.log(err.message)
+    throw err
+  }
 }
 
-export async function updateClass(className: string, property: Property) {
-  return await crud('update', { className, property })
-}
-
-export async function deleteClass(className: string) {
-  return await crud('delete', { className })
+export async function remove(className: string) {
+  try {
+    return await client.schema.classDeleter().withClassName(className).do()
+  } catch (err) {
+    console.log(err.message)
+    throw err
+  }
 }
