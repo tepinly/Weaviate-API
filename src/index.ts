@@ -1,7 +1,7 @@
 import { Property, WhereFilter } from 'weaviate-ts-client'
 import { ClassObj } from './interfaces/classObj'
 import * as queriesData from './queries/data'
-import * as queriesClass from './queries/schema'
+import * as queriesClass from './queries/class'
 
 export async function createClass(classObj: ClassObj) {
   try {
