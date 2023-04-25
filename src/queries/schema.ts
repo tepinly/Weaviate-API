@@ -31,7 +31,7 @@ export async function createClass(classObj: ClassObj) {
   return await crud('create', { classObj })
 }
 
-export async function getSchema() {
+export async function get() {
   return await crud('read')
 }
 
