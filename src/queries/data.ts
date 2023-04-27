@@ -1,5 +1,5 @@
 import { WhereFilter } from 'weaviate-ts-client'
-import { client } from './client'
+import { client } from '../client'
 
 async function getJsonData(url: string, auth: string = ''): Promise<any> {
   const file: Response = await fetch(url, {
@@ -56,7 +56,7 @@ export async function textSearch(
   }
 }
 
-export async function importUrl(
+export async function importData(
   className: string,
   url: string,
   additionalOptions?: any[]

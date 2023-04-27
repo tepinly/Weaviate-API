@@ -1,4 +1,4 @@
-import { client } from './client'
+import { client } from '../client'
 import { ClassObj } from '../interfaces/classObj'
 import { Property } from 'weaviate-ts-client'
 

@@ -27,13 +27,13 @@ export async function deleteClass(className: string) {
   }
 }
 
-export async function importUrl(
+export async function importData(
   className: string,
   url: string,
   additionalOptions?: any[]
 ) {
   try {
-    return await queriesData.importUrl(className, url, additionalOptions)
+    return await queriesData.importData(className, url, additionalOptions)
   } catch (err) {
     return
   }
