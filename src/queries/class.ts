@@ -11,11 +11,11 @@ export async function create(classObj: ClassObj) {
   }
 }
 
-export async function getProperties(className: string) {
+export async function get(className: string) {
   try {
     return (await client.schema.getter().do()).classes.find(
       (classObj) => classObj.class === className
-    ).properties
+    )
   } catch (err) {
     console.log(err.message)
     throw err

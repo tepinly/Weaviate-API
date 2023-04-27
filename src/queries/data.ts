@@ -20,7 +20,7 @@ export async function read() {
   }
 }
 
-export async function textSearch(
+export async function search(
   className: string,
   concepts: string[],
   fields: string[],
