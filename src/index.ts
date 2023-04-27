@@ -11,6 +11,14 @@ export async function createClass(classObj: ClassObj) {
   }
 }
 
+export async function getClass(className: string) {
+  try {
+    return await queriesClass.get(className)
+  } catch (err) {
+    return
+  }
+}
+
 export async function updateClass(className: string, property: Property) {
   try {
     return await queriesClass.update(className, property)
@@ -39,7 +47,7 @@ export async function importData(
   }
 }
 
-export async function textSearch(args: {
+export async function search(args: {
   className: string
   concepts: string[]
   fields: string[]
@@ -51,7 +59,7 @@ export async function textSearch(args: {
     const { className, concepts, fields, filters, limit, additionalFields } =
       args
     console.log(
-      await queriesData.textSearch(className, concepts, fields, {
+      await queriesData.search(className, concepts, fields, {
         filters,
         limit,
         additionalFields
