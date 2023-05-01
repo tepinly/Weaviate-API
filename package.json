@@ -1,14 +1,19 @@
 {
-  "name": "project_1",
+  "name": "weaviate-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "An API to simplify Weaviate vector db queries",
   "main": "build/index.js",
+  "keyowrds": ["vector", "database", "fuzzy", "search", "ai", "api", "weaviate", "cohere", "huggingface", "openai", "hnsw"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tepinly/Weaviate-API"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc-watch --onSuccess \"node build/index.js\"",
     "clean": "tsc-watch --build --clean"
   },
-  "author": "",
+  "author": "Youssef Fadel (tepinly)",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
