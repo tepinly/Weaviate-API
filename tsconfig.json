@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "module": "es6",
     "sourceMap": true,
     "strict": false,
     "noImplicitAny": false,
@@ -12,8 +13,11 @@
     "rootDir": "src",
   },
   "include": [
-    "src/*"
-, "src/interfaces/classObj.ts", "src/interfaces/classObjProp.ts", "src/queries/data.ts"  ],
+    "src/*",
+    "src/interfaces/classObj.ts",
+    "src/interfaces/classObjProp.ts",
+    "src/queries/data.ts"
+  ],
   "exclude": [
     "node_modules",
     "./node_modules",

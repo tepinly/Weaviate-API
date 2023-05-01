@@ -3,7 +3,20 @@
   "version": "1.0.0",
   "description": "An API to simplify Weaviate vector db queries",
   "main": "build/index.js",
-  "keyowrds": ["vector", "database", "fuzzy", "search", "ai", "api", "weaviate", "cohere", "huggingface", "openai", "hnsw"],
+  "type": "module",
+  "keyowrds": [
+    "vector",
+    "database",
+    "fuzzy",
+    "search",
+    "ai",
+    "api",
+    "weaviate",
+    "cohere",
+    "huggingface",
+    "openai",
+    "hnsw"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/tepinly/Weaviate-API"

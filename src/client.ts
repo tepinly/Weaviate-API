@@ -1,5 +1,6 @@
 import weaviate, { WeaviateClient } from 'weaviate-ts-client'
-require('dotenv').config()
+import dotenv from 'dotenv'
+dotenv.config()
 const { WEAVIATE_CLUSTER, WEAVIATE_VECTORIZER, WEAVIATE_VECTORIZER_KEY } =
   process.env
 

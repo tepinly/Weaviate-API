@@ -1,12 +1,11 @@
-import { client } from '../client'
-import { ClassObj } from '../interfaces/classObj'
 import { Property } from 'weaviate-ts-client'
+import { client } from '../client.js'
+import { ClassObj } from '../interfaces/classObj.js'
 
 export async function create(classObj: ClassObj) {
   try {
     return await client.schema.classCreator().withClass(classObj).do()
   } catch (err) {
-    console.log(err.message)
     throw err
   }
 }
@@ -17,7 +16,6 @@ export async function get(className: string) {
       (classObj) => classObj.class === className
     )
   } catch (err) {
-    console.log(err.message)
     throw err
   }
 }
@@ -30,7 +28,6 @@ export async function update(className: string, property: Property) {
       .withProperty(property)
       .do()
   } catch (err) {
-    console.log(err.message)
     throw err
   }
 }
@@ -39,7 +36,6 @@ export async function remove(className: string) {
   try {
     return await client.schema.classDeleter().withClassName(className).do()
   } catch (err) {
-    console.log(err.message)
     throw err
   }
 }

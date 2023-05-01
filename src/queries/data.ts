@@ -1,5 +1,5 @@
 import { WhereFilter } from 'weaviate-ts-client'
-import { client } from '../client'
+import { client } from '../client.js'
 
 async function getJsonData(url: string, auth: string = ''): Promise<any> {
   const file: Response = await fetch(url, {
@@ -15,7 +15,6 @@ export async function read() {
   try {
     return await client.data.getter().do()
   } catch (err) {
-    console.log(err.message)
     throw err
   }
 }
@@ -51,7 +50,6 @@ export async function search(
     const res = await graphql.do()
     return JSON.stringify(res, null, 2)
   } catch (err) {
-    console.log(err)
     throw err
   }
 }
@@ -91,7 +89,6 @@ export async function importData(
     const res = await batcher.do()
     console.log(res[0].result.errors)
   } catch (err) {
-    console.log(err.message)
     throw err
   }
 }
