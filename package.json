@@ -4,7 +4,7 @@
   "description": "An API to simplify Weaviate vector db queries",
   "main": "build/index.js",
   "type": "module",
-  "keyowrds": [
+  "keywords": [
     "vector",
     "database",
     "fuzzy",
