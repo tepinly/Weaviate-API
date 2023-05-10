@@ -1,16 +1,6 @@
 import { WhereFilter } from 'weaviate-ts-client'
 import { client } from '../client.js'
 
-async function getJsonData(url: string, auth: string = ''): Promise<any> {
-  const file: Response = await fetch(url, {
-    method: 'GET',
-    headers: {
-      Authorization: auth
-    }
-  })
-  return await file.json()
-}
-
 export async function read() {
   try {
     return await client.data.getter().do()
@@ -54,13 +44,11 @@ export async function search(
   }
 }
 
-export async function importData(
+export async function insertData(
   className: string,
-  url: string,
-  additionalOptions?: any[]
+  data: { [key: string]: unknown }[],
+  properties?: { [key: string]: unknown }[]
 ) {
-  const data = (await getJsonData(url)).data
-
   let batcher = client.batch.objectsBatcher()
   let counter: number = 0
   let batchSize: number = 100
@@ -71,15 +59,14 @@ export async function importData(
         class: className,
         properties: {
           ...row,
-          ...additionalOptions
+          ...properties
         }
       }
 
       batcher = batcher.withObject(obj)
 
-      if (counter++ == batchSize) {
+      if (counter++ === batchSize) {
         const res = await batcher.do()
-        console.log(res)
 
         counter = 0
         batcher = client.batch.objectsBatcher()

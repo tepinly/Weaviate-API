@@ -4,6 +4,8 @@ import * as queriesData from './queries/data.js'
 import * as queriesClass from './queries/class.js'
 import * as queriesSchema from './queries/schema.js'
 
+export { WhereFilter, ClassObj, Property }
+
 export async function getSchema() {
   try {
     return await queriesSchema.get()
@@ -44,16 +46,29 @@ export async function deleteClass(className: string) {
   }
 }
 
-export async function importData(
+export async function insertData(
   className: string,
-  url: string,
-  additionalOptions?: any[]
+  data: { [key: string]: unknown }[],
+  properties?: { [key: string]: unknown }[]
 ) {
   try {
-    return await queriesData.importData(className, url, additionalOptions)
+    return await queriesData.insertData(className, data, properties)
   } catch (err) {
     throw err
   }
+}
+
+export async function getJsonData(
+  url: string,
+  auth: string = ''
+): Promise<any> {
+  const file: Response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: auth
+    }
+  })
+  return await file.json()
 }
 
 export async function search(args: {
