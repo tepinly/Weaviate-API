@@ -1,6 +1,6 @@
 {
   "name": "weaviate-api",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "An API to simplify Weaviate vector db queries",
   "main": "build/index.js",
   "type": "module",
