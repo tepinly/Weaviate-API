@@ -11,12 +11,14 @@
     "esModuleInterop": true,
     "outDir": "build",
     "rootDir": "src",
+    "declaration": true
   },
   "include": [
     "src/*",
     "src/interfaces/classObj.ts",
     "src/interfaces/classObjProp.ts",
-    "src/queries/data.ts"
+    "src/queries/data.ts",
+    "src/index.d.ts"
   ],
   "exclude": [
     "node_modules",
